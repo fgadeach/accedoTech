@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Models\Week;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,4 +30,8 @@ Route::get('agente', function () {
     $agent = User::find(2);
     $agent->assignRole("agent");
     return "Registrado";
+});
+
+Route::get('test', function () {
+    return Week::get();
 });

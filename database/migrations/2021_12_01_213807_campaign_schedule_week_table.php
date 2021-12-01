@@ -17,9 +17,9 @@ class CampaignScheduleWeekTable extends Migration
             $table->id();
             $table->string('headcount');
 
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('campaign_id');
             $table->unsignedBigInteger('schedule_week_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('campaign_id')->references('id')->on('campaigns');
             $table->foreign('schedule_week_id')->references('id')->on('schedule_weeks');
         });
     }
