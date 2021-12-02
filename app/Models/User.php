@@ -60,4 +60,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function agent(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Agent::class, 'user_id');
+    }
 }

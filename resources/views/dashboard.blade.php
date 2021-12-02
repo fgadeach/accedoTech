@@ -5,13 +5,13 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12" id="app">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @role('agent')
-               @include('agente/agentedash')
+            @include('agente/agentedash')
             @endrole
             @role('admin')
-                @include('admin/admindash')
+            @include('admin/admindash')
             @endrole
         </div>
     </div>

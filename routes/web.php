@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Models\Agent_Extratime;
 use App\Models\Week;
 use App\Models\Agent_Week;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,14 +21,18 @@ Route::get('/', function () {
     return view('welcome');
 })->middleware(["guest"]);
 
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    $weeks = Week::get();
+    $weeks = Week::with('agent_week.agent')->get();
     $agentWeeks = Agent_Week::get();
 
-    return view('dashboard',compact('weeks','agentWeeks'));
+    return view('dashboard', compact('weeks', 'agentWeeks'));
 })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/getAgentSchedule',[AgentController::class,"getAgentSchedule"])->name('getAgentSchedule');
+Route::middleware(['auth:sanctum', 'verified'])->get('/getAgentSchedule', [AgentController::class, "getAgentSchedule"])->name('getAgentSchedule');
+
+
+Route::post('/AgentWeek', [\App\Http\Controllers\AgentController::class, 'storeAgentWeek']);
 
 
 Route::get('admin', function () {
@@ -41,5 +46,10 @@ Route::get('agente', function () {
 });
 
 Route::get('test', function () {
-    return Agent_Extratime::get();
+//    return Agent_Extratime::get();
+
+    $user = User::find(1);
+//    $user->assignRole('agent');
+
+    return $user->load('agent.agent_week');
 });

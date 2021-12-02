@@ -1,7 +1,12 @@
 require('./bootstrap');
 
-import Alpine from 'alpinejs';
+import Vue from 'vue'
 
-window.Alpine = Alpine;
+import Holidays from "./components/Holidays";
 
-Alpine.start();
+new Vue({
+    el: '#app',
+    components: {
+        Holidays
+    }
+})
