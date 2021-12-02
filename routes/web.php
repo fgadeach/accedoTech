@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Models\Agent_Extratime;
 use App\Models\Week;
+use App\Models\Agent_Week;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,8 +21,14 @@ Route::get('/', function () {
 })->middleware(["guest"]);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    $weeks = Week::get();
+    $agentWeeks = Agent_Week::get();
+
+    return view('dashboard',compact('weeks','agentWeeks'));
 })->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/getAgentSchedule',[AgentController::class,"getAgentSchedule"])->name('getAgentSchedule');
+
 
 Route::get('admin', function () {
     return "Registrado";
@@ -33,5 +41,5 @@ Route::get('agente', function () {
 });
 
 Route::get('test', function () {
-    return Week::get();
+    return Agent_Extratime::get();
 });

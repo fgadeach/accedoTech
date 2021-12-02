@@ -10,41 +10,13 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <h1 class="text-center text-3xl m-4 font-bold font-mono">Holidays (Dayshift)</h1>
                 <div class="grid grid-cols-4 gap-4">
+                    @foreach ($weeks as $week)
                     <div class="p-auto  cursor-pointer hover:bg-indigo-400 m-5 py-4 bg-green-400 text-center text-xl font-bold rounded-lg tracking-wide text-white">
                         <div>
-                            <h1> Monday</h1>
+                            <h1> {{$week->name}}</h1>
                         </div>
                     </div>
-                    <div class="p-auto cursor-pointer hover:bg-indigo-400 m-5 py-4 bg-green-400 text-center text-xl font-bold rounded-lg tracking-wide text-white">
-                        <div>
-                            <h1> Tuesday</h1>
-                        </div>
-                    </div>
-                    <div class="p-auto cursor-pointer hover:bg-indigo-400 m-5 py-4 bg-green-400 text-center text-xl font-bold rounded-lg tracking-wide text-white">
-                        <div>
-                            <h1> Wednesday</h1>
-                        </div>
-                    </div>
-                    <div class="p-auto cursor-pointer hover:bg-indigo-400 m-5 py-4 bg-green-400 text-center text-xl font-bold rounded-lg tracking-wide text-white">
-                        <div>
-                            <h1> Thursday</h1>
-                        </div>
-                    </div>
-                    <div class="p-auto cursor-pointer hover:bg-indigo-400 m-5 py-4 bg-green-400 text-center text-xl font-bold rounded-lg tracking-wide text-white">
-                        <div>
-                            <h1> Friday</h1>
-                        </div>
-                    </div>
-                    <div class="p-auto cursor-pointer hover:bg-indigo-400 m-5 py-4 bg-green-400 text-center text-xl font-bold rounded-lg tracking-wide text-white">
-                        <div>
-                            <h1> Saturday</h1>
-                        </div>
-                    </div>
-                    <div class="p-auto cursor-pointer hover:bg-indigo-400 m-5 py-4 bg-green-400 text-center text-xl font-bold rounded-lg tracking-wide text-white">
-                        <div>
-                            <h1> Sunday</h1>
-                        </div>
-                    </div>
+                    @endforeach
                     <div class="p-auto m-5 py-4 bg-gray-700 text-center text-xl font-bold rounded-lg tracking-wide text-white">
                         <div>
                             <h1> Total Horas: 40</h1>
@@ -53,6 +25,7 @@
                 </div> 
             </div>
         </div>
+        
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 my-6">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <h1 class="text-center text-3xl m-4 font-bold font-mono">Extratime</h1>
