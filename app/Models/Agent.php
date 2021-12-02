@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Agent extends Model
 {
     use HasFactory;
+
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function agent_week(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Agent_Week::class, 'agent_id');
+    }
 }
