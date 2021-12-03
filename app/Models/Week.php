@@ -15,6 +15,6 @@ class Week extends Model
     }
     public function schedule_week()
     {
-        return $this->hasOne(Schedule_Week::class, 'week_id');
+        return $this->hasMany(Schedule_Week::class, 'week_id');
     }
 }

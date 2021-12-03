@@ -10,9 +10,6 @@
             @role('agent')
             @include('agente/agentedash')
             @endrole
-            @role('admin')
-            @include('admin/admindash')
-            @endrole
         </div>
     </div>
 </x-app-layout>

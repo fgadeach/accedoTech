@@ -20,8 +20,10 @@ class Schedule_Week extends Model
         return $this->belongsTo(Schedule::class, 'schedule_id');
     }
     public function campaign_schedule(): \Illuminate\Database\Eloquent\Relations\HasOne {
-        return $this->hasOne(Campaign_Schedule::class, 'schedule_weeks_id');
+        return $this->hasOne(Campaign_Schedule::class, 'schedule_week_id');
     }
-
+    public function agent_extratime(): \Illuminate\Database\Eloquent\Relations\HasOne {
+        return $this->hasOne(Agent_Extratime::class, 'schedule_week_id');
+    }
    
 }
