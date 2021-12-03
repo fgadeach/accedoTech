@@ -8,6 +8,7 @@ use App\Models\Campaign;
 use App\Models\Agent_Week;
 use App\Models\Campaign_Schedule;
 use App\Models\Schedule;
+use App\Models\Schedule_Week;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,11 +29,13 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $weeks = Week::with('agent_week.agent')->get();
     $agentWeeks = Agent_Week::get();
+    $agentExtra= Agent_Extratime::get();
     $campaigns = Campaign::get();
     $campaignSchedule = Campaign_Schedule::get();
     $schedules = Schedule::get();
+    $scheduleWeeks = Schedule_Week::get();
 
-    return view('dashboard', compact('weeks', 'agentWeeks','campaigns','schedules'));
+    return view('dashboard', compact('weeks', 'agentWeeks','campaigns','schedules','agentExtra'));
 })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/getAgentSchedule', [AgentController::class, "getAgentSchedule"])->name('getAgentSchedule');
@@ -52,6 +55,10 @@ Route::get('agente', function () {
 });
 
 Route::get('test', function () {
- return Agent_Week::where('agent_id', auth()->user()->agent->id)->count();
+ return Schedule_Week::with('agent_extratime')->get();
 });
+
+Route::get('/CampaignSchedule/{campaign?}', [\App\Http\Controllers\AdminController::class, 'index']);
+
+Route::get('/AgentOvertime/{agent?}', [\App\Http\Controllers\AgentController::class, 'storeAgentExtratime']);
 

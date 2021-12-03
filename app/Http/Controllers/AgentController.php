@@ -6,14 +6,21 @@ use Illuminate\Http\Request;
 
 use App\Models\Agent;
 use App\Models\Agent_Week;
+use App\Models\Agent_Extratime;
 use App\Models\Week;
+use App\Models\Schedule_Week;
+use App\Models\Schedule;
 
 class AgentController extends Controller
 {
     public function getAgents()
     {
         $agents = Agent::get();
-        return view('admin.admindash', compact('agents'));
+        $ag = Agent::Where('id','=',auth()->user()->agent->id)->get();
+
+        $scheduls = Schedule::Where('schedule_hour','<',$ag->end_date)->get();
+
+        return view('admin.admindash', compact('agents','scheduls'));
     }
 
     public function getAgentSchedule($id)
@@ -41,4 +48,13 @@ class AgentController extends Controller
 
         return back();
     }
+
+    public function storeAgentExtratime(Agent $agent)
+    {
+        $scheduls = Schedule::Where('hour','>',auth()->user()->agent->endTime)->get();
+        $weeks = Week::get();
+
+        return view('agente.overtime', compact('scheduls','weeks'));
+    }
+
 }
