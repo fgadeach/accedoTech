@@ -23,23 +23,22 @@ class AgentController extends Controller
         return view('agente.agentedash', compact('agentWeeks', 'week'));
     }
 
-    public function storeAgentWeek(Request $request): \Illuminate\Http\JsonResponse
+    public function storeAgentWeek(Week $week)
     {
-        if ($agent_week = Agent_Week::where('week_id', $request['week']['id'])->first()) {
+        if ($agent_week = Agent_Week::where('week_id', $week->id)->first()) {
             $agent_week->delete();
         }else{
 
-            $agent_week = new Agent_Week();
-            $agent_week->available = true;
-            $agent_week->agent_id = auth()->user()->agent->id;
-            $agent_week->week_id = $request['week']['id'];
+            if(count(Agent_Week::where('agent_id', auth()->user()->agent->id)->get())<2){
+                $agent_week = new Agent_Week();
+                $agent_week->available = true;
+                $agent_week->agent_id = auth()->user()->agent->id;
+                $agent_week->week_id = $week->id;
 
-            $agent_week->save();
+                $agent_week->save();
+            }
         }
 
-        return response()->json([
-            'saved' => true,
-            'weeks' => Week::with('agent_week.agent')->get()
-        ]);
+        return back();
     }
 }

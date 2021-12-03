@@ -2,65 +2,30 @@
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8 my-6">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <h1 class="text-center text-3xl m-4 font-bold font-mono">Manpower</h1>
+                <div class="inline-block relative w-64 mx-1">
+                        <select class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                        @foreach($campaigns as $campaign)
+                                <option>{{$campaign->name}}</option>
+                        @endforeach
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
+                </div>
                 <div class="grid grid-cols-8 gap-4 my-2">
-                        <div class="p-auto m-1 py-4 bg-gray-700 text-center text-xl font-bold rounded-lg tracking-wide text-white">
-                                <h1>Time</h1>
+                        <div>
+                                <div class="p-auto m-1 py-4 bg-gray-700 text-center text-xl font-bold rounded-lg tracking-wide text-white">
+                                        <h1>Time</h1>
+                                </div>
+                                @foreach($schedules as $schedule)
+                                        <h1 class="text-center my-2">{{$schedule->hour}}</h1>
+                                @endforeach
                         </div>
-                        <div class="p-auto m-1 py-4 bg-indigo-400 text-center text-xl font-bold rounded-lg tracking-wide text-white">
-                                <h1>Monday</h1>
+                        @foreach ($weeks as $week)
+                        <div>
+                                <div class="p-auto m-1 py-4 bg-indigo-400 text-center text-xl font-bold rounded-lg tracking-wide text-white">
+                                        <h1>{{$week->name}}</h1>
+                                </div>
                         </div>
-                        <div class="p-auto m-1 py-4 bg-indigo-400 text-center text-xl font-bold rounded-lg tracking-wide text-white">
-                                <h1>Tuesday</h1>
-                        </div>
-                        <div class="p-auto m-1 py-4 bg-indigo-400 text-center text-xl font-bold rounded-lg tracking-wide text-white">
-                                <h1>Wednesday</h1>
-                        </div>
-                        <div class="p-auto m-1 py-4 bg-indigo-400 text-center text-xl font-bold rounded-lg tracking-wide text-white">
-                                <h1>Thursday</h1>
-                        </div>
-                        <div class="p-auto m-1 py-4 bg-indigo-400 text-center text-xl font-bold rounded-lg tracking-wide text-white">
-                                <h1>Friday</h1>
-                        </div>
-                        <div class="p-auto m-1 py-4 bg-indigo-400 text-center text-xl font-bold rounded-lg tracking-wide text-white">
-                                <h1>Saturday</h1>
-                        </div>
-                        <div class="p-auto m-1 py-4 bg-indigo-400 text-center text-xl font-bold rounded-lg tracking-wide text-white">
-                                <h1>Sunday</h1>
-                        </div>
-                        <div class="text-center"> 9 pm</div>
-                        <div class="text-center"> 15</div>
-                        <div class="text-center"> 10</div>
-                        <div class="text-center"> -3</div>
-                        <div class="text-center"> 5</div>
-                        <div class="text-center"> 1</div>
-                        <div class="text-center"> 2</div>
-                        <div class="text-center"> 19</div>
-                        <div class="text-center"> 10 pm</div>
-                        <div class="text-center"> 15</div>
-                        <div class="text-center"> 10</div>
-                        <div class="text-center"> -3</div>
-                        <div class="text-center"> 5</div>
-                        <div class="text-center"> 1</div>
-                        <div class="text-center"> 2</div>
-                        <div class="text-center"> 19</div>
-                        <div class="text-center"> 11 pm</div>
-                        <div class="text-center"> 15</div>
-                        <div class="text-center"> 10</div>
-                        <div class="text-center"> -3</div>
-                        <div class="text-center"> 5</div>
-                        <div class="text-center"> 1</div>
-                        <div class="text-center"> 2</div>
-                        <div class="text-center"> 19</div>
-                        <div class="text-center"> 12 pm</div>
-                        <div class="text-center"> 15</div>
-                        <div class="text-center"> 10</div>
-                        <div class="text-center"> -3</div>
-                        <div class="text-center"> 5</div>
-                        <div class="text-center"> 1</div>
-                        <div class="text-center"> 2</div>
-                        <div class="text-center"> 19</div>
-                      
-
+                        @endforeach
                 </div>
             </div>
         </div>

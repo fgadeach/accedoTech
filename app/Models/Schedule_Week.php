@@ -10,4 +10,18 @@ class Schedule_Week extends Model
     use HasFactory;
 
     protected $table = 'schedule_weeks';
+
+    public function week()
+    {
+        return $this->belongsTo(Week::class, 'week_id');
+    }
+    public function schedule()
+    {
+        return $this->belongsTo(Schedule::class, 'schedule_id');
+    }
+    public function campaign_schedule(): \Illuminate\Database\Eloquent\Relations\HasOne {
+        return $this->hasOne(Campaign_Schedule::class, 'schedule_weeks_id');
+    }
+
+   
 }

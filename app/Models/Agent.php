@@ -18,4 +18,9 @@ class Agent extends Model
     {
         return $this->hasMany(Agent_Week::class, 'agent_id');
     }
+
+    public function agent_extratime(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Agent_Extratime::class, 'agent_id');
+    }
 }

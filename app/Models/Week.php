@@ -13,4 +13,8 @@ class Week extends Model
     {
         return $this->hasOne(Agent_Week::class, 'week_id');
     }
+    public function schedule_week()
+    {
+        return $this->hasOne(Schedule_Week::class, 'week_id');
+    }
 }
