@@ -32,7 +32,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/getAgentSchedule', [AgentController::class, "getAgentSchedule"])->name('getAgentSchedule');
 
 
-Route::post('/AgentWeek', [\App\Http\Controllers\AgentController::class, 'storeAgentWeek']);
+Route::get('/AgentWeek/{week}', [\App\Http\Controllers\AgentController::class, 'storeAgentWeek']);
 
 
 Route::get('admin', function () {
@@ -48,8 +48,10 @@ Route::get('agente', function () {
 Route::get('test', function () {
 //    return Agent_Extratime::get();
 
-    $user = User::find(1);
-//    $user->assignRole('agent');
+//    $user = User::find(1);
+////    $user->assignRole('agent');
+//
+//    return $user->load('agent.agent_week');
 
-    return $user->load('agent.agent_week');
+    return Agent_Week::where('agent_id', auth()->user()->agent->id)->count();
 });
